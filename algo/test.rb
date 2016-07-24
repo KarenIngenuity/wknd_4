@@ -3,17 +3,16 @@
 # bonus: returns a string of all missing letters as a string. ex: find_missing_letter("ace") would return "bd", write your own test.
 
 def find_missing_letter(range)
-  alphabet = "abcdefghijklmnopqrstuvwyz"
-  if alphabet.include? (range)
-    return nil
-  else
     missing_letters = []
     range = range.chars
     for i in range[0]..range[-1]
       missing_letters << i unless range.include? (i)
     end 
-    missing_letters.join(",")
-  end
+    if missing_letters == []
+      return nil
+    else
+      return missing_letters.join(",")
+    end
 end
 
 # Driver code - don't touch anything below this line.
