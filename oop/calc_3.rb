@@ -3,9 +3,7 @@
 # of a triangle if given the length of the other two sides. Figure out how to 
 # DRY up all the code below - there shouldn't be a single method duplicated between
 # any two classes.
-
-class SimpleCalculator
-
+module Calculator
   def add(first_number, second_number)
     first_number + second_number
   end
@@ -21,26 +19,14 @@ class SimpleCalculator
   def divide(first_number, second_number)
     first_number / second_number
   end
+end
 
+class SimpleCalculator
+  include Calculator
 end
 
 class FancyCalculator
-
-  def add(first_number, second_number)
-    first_number + second_number
-  end
-
-  def subtract(first_number, second_number)
-    first_number - second_number
-  end
-
-  def multiply(first_number, second_number)
-    first_number * second_number
-  end
-
-  def divide(first_number, second_number)
-    first_number / second_number
-  end
+  include Calculator
 
   def square_root(number)
     Math.sqrt(number)
@@ -48,27 +34,7 @@ class FancyCalculator
 
 end
 
-class WhizBangCalculator
-
-  def add(first_number, second_number)
-    first_number + second_number
-  end
-
-  def subtract(first_number, second_number)
-    first_number - second_number
-  end
-
-  def multiply(first_number, second_number)
-    first_number * second_number
-  end
-
-  def divide(first_number, second_number)
-    first_number / second_number
-  end
-
-  def square_root(number)
-    Math.sqrt(number)
-  end
+class WhizBangCalculator < FancyCalculator
 
   def hypotenuse(first_number, second_number)
     Math.hypot(first_number, second_number)
@@ -83,4 +49,78 @@ class WhizBangCalculator
 end
 
 # Copy your driver code from the previous exercise and more below:
+
+puts "Testing code:"
+puts "-------------------------"
+calculator1 = WhizBangCalculator.new
+
+result = calculator1.add(2, 3)
+puts result
+if result == 5
+  puts 'PASS!'
+else
+  puts 'Please inspect your add method'
+end
+puts "-------------------------"
+puts
+result = calculator1.subtract(10, 3)
+puts result
+if result == 7
+  puts 'PASS!'
+else
+  puts 'Please inspect your subtract method'
+end
+puts "-------------------------"
+puts
+result = calculator1.multiply(10, 3)
+puts result
+if result == 30
+  puts 'PASS!'
+else
+  puts 'Please inspect your multiply method'
+end
+puts
+puts "-------------------------"
+puts
+result = calculator1.divide(12, 3)
+puts result
+if result == 4
+  puts 'PASS!'
+else
+  puts 'Please inspect your divide method'
+end
+puts
+puts "-------------------------"
+puts
+result = calculator1.square_root(9)
+puts result
+if result == 3
+  puts 'PASS!'
+else
+  puts 'Please inspect your divide method'
+end
+puts
+puts "-------------------------"
+puts
+result = calculator1.hypotenuse(3, 4)
+puts result
+if result == 5
+  puts 'PASS!'
+else
+  puts 'Please inspect your divide method'
+end
+puts
+puts "-------------------------"
+puts
+result = calculator1.exponent(3, 4)
+puts result
+if result == (3**4)
+  puts 'PASS!'
+else
+  puts 'Please inspect your divide method'
+end
+puts
+puts "-------------------------"
+
+
 
